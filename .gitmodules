@@ -1,12 +1,12 @@
-[submodule "lib/SDL"]
-	path = lib/SDL
+[submodule "lib/SDL2"]
+	path = lib/SDL2
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "lib/SDL_ttf"]
-	path = lib/SDL_ttf
-	url = https://github.com/libsdl-org/SDL_ttf.git
-[submodule "lib/SDL_image"]
-	path = lib/SDL_image
+	branch = SDL2
+[submodule "lib/SDL2_image"]
+	path = lib/SDL2_image
 	url = https://github.com/libsdl-org/SDL_image.git
-[submodule "lib/freetype"]
-	path = lib/freetype
-	url = https://github.com/freetype/freetype.git
+	branch = SDL2
+[submodule "lib/SDL2_ttf"]
+	path = lib/SDL2_ttf
+	url = https://github.com/libsdl-org/SDL_ttf.git
+	branch = SDL2
