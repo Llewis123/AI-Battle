@@ -4,10 +4,10 @@
  * TODO: Get a live reader of the inouts being made to make it more video game like
  ***/
 #include "GamePlay.h"
-#include "../build/MapDisplay.h"
+#include "MapDisplay.h"
 #include <iostream>
 #include <vector>
-#include "../build/Weapon.h"
+#include "Weapon.h"
 
 using std::cout, std::endl, std::cin;
 GamePlay::GamePlay() {

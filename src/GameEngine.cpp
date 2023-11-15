@@ -3,7 +3,8 @@
 //
 #include "GameEngine.h"
 using std::cout, std::endl;
-
+SDL_Window *m_pWindow = NULL;
+SDL_Renderer *m_pRenderer = NULL;
 GameEngine::GameEngine() = default;
 
 GameEngine::~GameEngine() = default;
@@ -19,12 +20,12 @@ void GameEngine::init(const char *title, int xpos, int ypos, int width, int heig
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "SDL Successfully Initialized!" << std::endl;
 
-        window = SDL_CreateWindow(title, width, height, flags);
+        window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
         if (window) {
             std::cout << "Window created" << std::endl;
         }
 
-        renderer = SDL_CreateRenderer(window, title, flags);
+        renderer = SDL_CreateRenderer(window, 0, flags);
         if (renderer) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             std::cout << "Renderer initialized" << std::endl;
@@ -46,7 +47,7 @@ void GameEngine::handleEvents() {
     SDL_PollEvent(&event);
     // for now just until we do quit
     switch (event.type) {
-        case SDL_EVENT_KEY_DOWN:
+        case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_ESCAPE:
                     // Quit the game when the escape key is pressed
@@ -66,9 +67,9 @@ void GameEngine::handleEvents() {
             // going to quit the game when the escape key is pressed
             isRunning = false;
             break;
-        case SDL_EVENT_KEY_UP:
+        case SDL_KEYUP:
             break;
-        case SDL_EVENT_QUIT:
+        case SDL_QUIT:
             isRunning = false;
             break;
 

@@ -4,14 +4,15 @@
  * M1OEP
  * Genetic Algorithm Sci Fi RPG
 */
+#define SDL_MAIN_HANDLED
 
 #include <iomanip>
-#include "build/MapDisplay.h"
-#include "framework/GameEngine.h"
+#include "MapDisplay.h"
+#include "GameEngine.h"
 
 
 
-#include "framework/GamePlay.h"
+#include "GamePlay.h"
 
 // TODO: Add pointers for enemy direction and add enemies
 // TODO: Graphics 2D
