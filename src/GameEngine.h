@@ -16,7 +16,6 @@
 #include "SDL_image.h"
 #include <stdio.h>
 
-
 #include <iostream>
 
 class GameEngine {
@@ -27,6 +26,7 @@ public:
      * Effects: is just default for calling purposes
      */
     GameEngine();
+
     /*!
      * Required: Nothing
      * Modifies: Nothing
@@ -47,7 +47,8 @@ public:
      * Also checks to make sure everything can render correctly
      *
      */
-    void init(const char* title, int xpos,int ypos, int width, int height, bool fullscreen);
+    void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+
     /*!
      * Requires: Nothing
      * Modifies: Nothing
@@ -64,11 +65,20 @@ public:
     void update();
 
     /*!
+     * @requires: Nothing
+     * @modifies: character renderer
+     * @effects: Loads a given piece of media and initializes the the renderer to it
+     */
+    bool loadMedia();
+
+
+    /*!
      * Requires: Nothing
      * Modifies: *renderer & *window
      * Effects: renders a window
      */
     void render();
+
     /**
      * Effects: cleans the current renderer and window of memory leaks and closes it
      */
@@ -82,14 +92,17 @@ public:
      * if it is not, will be used to shut the window
      * and renderer down
      */
-    bool running() {return isRunning;};
+    bool running() { return isRunning; };
 
 
 private:
-    int cnt=0;
+    int cnt = 0;
     bool isRunning{};
     SDL_Window *window{};
     SDL_Renderer *renderer{};
+    SDL_Surface *screenSurface = NULL;
+    SDL_Surface *character = NULL;
+    SDL_Texture *texture = NULL;
 
 };
 

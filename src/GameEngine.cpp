@@ -2,9 +2,9 @@
 // Created by grimk on 10/8/2023.
 //
 #include "GameEngine.h"
+
 using std::cout, std::endl;
-SDL_Window *m_pWindow = NULL;
-SDL_Renderer *m_pRenderer = NULL;
+
 GameEngine::GameEngine() = default;
 
 GameEngine::~GameEngine() = default;
@@ -23,6 +23,7 @@ void GameEngine::init(const char *title, int xpos, int ypos, int width, int heig
         window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
         if (window) {
             std::cout << "Window created" << std::endl;
+            screenSurface = SDL_GetWindowSurface(window);
         }
 
         renderer = SDL_CreateRenderer(window, 0, flags);
@@ -101,6 +102,8 @@ void GameEngine::update() {
 void GameEngine::render() {
     SDL_RenderClear(renderer);
     // TODO: Add stuff to render
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer,)
     // Render text at position (100, 100)
 
     SDL_RenderPresent(renderer);
@@ -115,3 +118,23 @@ void GameEngine::clean() {
     std::cout << "Game Quit!" << std::endl;
 }
 
+bool GameEngine::loadMedia() {
+
+    // success flag
+    bool success = true;
+
+    // Load splash image
+    character = IMG_Load("path/tp/image.png");
+    if (!character) {
+        std::cout << "Unable to load image %s! SDL Error: %s\n" <<
+                  "path/to/image.png" << SDL_GetError() << std::endl;
+        success = false;
+    }
+    texture = SDL_CreateTextureFromSurface(renderer,character);
+    SDL_FreeSurface(character);
+    if (!texture){
+
+    }
+    return success;
+
+}

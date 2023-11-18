@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(graphics)
+project(VideoGame)
 
 # Set normal compiler flags
 set(CMAKE_CXX_STANDARD 20)
@@ -20,6 +20,10 @@ endif()
 
 set(BUILD_SHARED_LIBS OFF)
 
+add_subdirectory(lib/freetype)
+set(FREETYPE_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/lib/freetype/include)
+set(FREETYPE_LIBRARY freetype)
+
 add_subdirectory(lib/SDL)
 set(SDL2_INCLUDE_DIRS lib/SDL/include)
 set(SDL2_LIBRARIES SDL2-static)
@@ -28,8 +32,15 @@ add_subdirectory(lib/SDL_image)
 set(SDL2_IMAGE_INCLUDE_DIRS lib/SDL_image)
 set(SDL2_IMAGE_LIBRARIES SDL2_image)
 
+add_subdirectory(lib/SDL_ttf)
+set(SDL2_TTF_INCLUDE_DIRS lib/SDL_ttf)
+set(SDL2_TTF_LIBRARIES SDL2_ttf)
+
+include_directories(${FREETYPE_INCLUDE_DIRS})
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+include_directories(${SDL2_TTF_INCLUDE_DIRS})
+
 
 # Set the project files
 file(GLOB PROJECT_HEADERS "src/*.h")
